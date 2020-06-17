@@ -1,0 +1,95 @@
+﻿@model Curso
+
+@{
+    ViewData["Title"] = "Curso";
+
+}
+
+<div class="container ">
+
+    <div class="container border rounded p-2  m-2">
+        <h3>Detalles del curso</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        Numero del Curso
+                    </th>
+                    <th scope="col">
+                        Salon Del Curso
+                    </th>
+                    <th scope="col">
+                        Jordana del Curso
+                    </th>
+                    <th>
+                        Id del Curso
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Nombre</td>
+                    <td scope="row">@Model.Dirección</td>
+                    <td scope="row">@Model.Jornada</td>
+                    <td scope="row">@Model.Id</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    
+
+    <div class="container border rounded p-2  m-2">
+        <h3>Asignaturas</h3>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        Nombre
+                    </th>
+                    <th scope="col">
+                        Id
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.Asignaturas)
+                {
+                    <tr>
+                        <td>
+                            @item.Nombre
+                        </td>
+                        <td>
+                            @item.Id
+                        </td>
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container border rounded p-2  m-2">
+        <h3>Alumnos</h3>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    @foreach (var item in Model.Alumnos)
+                    {
+                        <th>
+                            @item.Nombre
+                        </th>
+                    }
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+</div>
+
+
+
+
