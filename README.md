@@ -7,6 +7,16 @@ etc etc
  
 Todo el proyecto está hecho con ASP.NET core MVC, la base de datos la administro con el ORM que nos administra
 Entity framework core y el sistema de usuarios usé Identity framework, la base de datos está hecha en MSSQL
+
+# Pasos para ejecutarlo
+
+-Primero la base de datos, tienen que modificar el string conection de la base de datos y poner el de su computadora local , de 
+lo contrario el programa no va a encontrar la base de datos y explotará todo. También pueden poner una base de datos en memoria
+así se crea la base cuando empieze la ejecución y se borra todo al terminar la ejecución, esto lo hacen modificando en el archivo 
+"Start" la sección de "conection database".
+ 
+Despues de resolver el tema de la base de datos debería funcionar el resto, ejecutenlo con el comando dotnet run desde cualquier terminal
+o desde el mismo visual studio.
  
 # Creación de usuarios
  
