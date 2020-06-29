@@ -10,10 +10,40 @@ Entity framework core y el sistema de usuarios usé Identity framework, la base 
 
 # Pasos para ejecutarlo
 
--Primero la base de datos, tienen que modificar el string conection de la base de datos y poner el de su computadora local , de 
-lo contrario el programa no va a encontrar la base de datos y explotará todo. También pueden poner una base de datos en memoria
+-Primero la base de datos, tienen que modificar el "ConnectionStrings" de la base de datos y poner el de su computadora local , de 
+lo contrario el programa no va a encontrar la base de datos y explotará todo.
+
+//cambiar el string conecction en el archivo appsettings.jason
+{
+
+"ConnectionStrings": {
+    "EscuelaContextConnection": "Server=(localdb)\\mssqllocaldb;Database=Escuela;Trusted_Connection=True;MultipleActiveResultSets=true"//colocar el de su base de //datos local
+  }
+}
+
+
+También pueden poner una base de datos en memoria
 así se crea la base cuando empieze la ejecución y se borra todo al terminar la ejecución, esto lo hacen modificando en el archivo 
-"Start" la sección de "conection database".
+"Startup.cs" lo siguiente:
+
+ public void ConfigureServices(IServiceCollection services)
+        {
+
+            services.AddControllersWithViews();
+
+            services.AddRazorPages();
+
+            services.AddDbContext<EscuelaContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("EscuelaContext")));// si desea poner una base de datos en memoria ,
+                                                                                           //cambiar el "UseSqlServer"       
+                                                                                           //.UseInMemoryDatabase(databaseName: "Test")        
+        }
+ 
+ 
+
+**Despues de hacer lo anterion en la consola hay que actualizar la base de datos con el comando "Update-Database"**, si todo sale bien les debe 
+salir en la consona "DONE" y si no les funciona prueben haciendo una migración nueva con el comando "add-migration" y volviendo a actualizar 
+la base de datos.
  
 Despues de resolver el tema de la base de datos debería funcionar el resto, ejecutenlo con el comando dotnet run desde cualquier terminal
 o desde el mismo visual studio.
